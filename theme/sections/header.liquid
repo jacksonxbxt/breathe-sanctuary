@@ -1,0 +1,444 @@
+{%- comment -%}
+  BREATHE WELLNESS SANCTUARY - Header Section
+  Navigation with Remedy Place inspired structure
+{%- endcomment -%}
+
+<header class="site-header" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="header-inner">
+      {%- comment -%} Logo {%- endcomment -%}
+      <a href="{{ routes.root_url }}" class="site-logo">
+        {%- if section.settings.logo != blank -%}
+          <img src="{{ section.settings.logo | image_url: width: 200 }}" 
+               alt="{{ shop.name }}"
+               width="200"
+               height="40"
+               loading="eager">
+        {%- else -%}
+          <span class="logo-text">{{ section.settings.logo_text | default: shop.name }}</span>
+        {%- endif -%}
+      </a>
+
+      {%- comment -%} Main Navigation {%- endcomment -%}
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          {%- comment -%} Sanctuary / Location {%- endcomment -%}
+          <li class="nav-dropdown">
+            <a href="{{ pages['sanctuary'].url | default: '#' }}" class="nav-link">
+              {{ section.settings.nav_sanctuary | default: 'Sanctuary' }}
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <div class="nav-dropdown-content">
+              <ul>
+                <li><a href="{{ pages['our-space'].url | default: '#' }}">Our Space</a></li>
+                <li><a href="{{ pages['the-pool'].url | default: '#' }}">The Pool</a></li>
+                <li><a href="{{ pages['contrast-suites'].url | default: '#' }}">Contrast Suites</a></li>
+                <li><a href="{{ pages['restoration-lounge'].url | default: '#' }}">Restoration Lounge</a></li>
+              </ul>
+            </div>
+          </li>
+
+          {%- comment -%} Experiences / Offerings {%- endcomment -%}
+          <li class="nav-dropdown">
+            <a href="{{ collections['experiences'].url | default: '/pages/experiences' }}" class="nav-link">
+              {{ section.settings.nav_experiences | default: 'Experiences' }}
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <div class="nav-dropdown-content">
+              <ul>
+                <li><a href="{{ pages['tech-remedies'].url | default: '#' }}">Tech-Remedies</a></li>
+                <li><a href="{{ pages['hbot-chamber'].url | default: '#' }}">HBOT Chamber</a></li>
+                <li><a href="{{ pages['sauna'].url | default: '#' }}">Sauna & Steam</a></li>
+                <li><a href="{{ pages['contrast-therapy'].url | default: '#' }}">Contrast Therapy</a></li>
+                <li><a href="{{ pages['iv-vitamin-therapy'].url | default: '#' }}">IV Vitamin Therapy</a></li>
+                <li><a href="{{ pages['breathwork'].url | default: '#' }}">Breathwork & Ice Bath</a></li>
+              </ul>
+            </div>
+          </li>
+
+          {%- comment -%} Memberships {%- endcomment -%}
+          <li>
+            <a href="{{ pages['memberships'].url | default: '/pages/memberships' }}" class="nav-link">
+              {{ section.settings.nav_memberships | default: 'Memberships' }}
+            </a>
+          </li>
+
+          {%- comment -%} Events - "After Hours" Revenue Stream {%- endcomment -%}
+          <li>
+            <a href="{{ pages['events'].url | default: '/pages/events' }}" class="nav-link">
+              {{ section.settings.nav_events | default: 'Events' }}
+            </a>
+          </li>
+
+          {%- comment -%} About {%- endcomment -%}
+          <li>
+            <a href="{{ pages['about'].url | default: '/pages/about' }}" class="nav-link">
+              {{ section.settings.nav_about | default: 'About' }}
+            </a>
+          </li>
+
+          {%- comment -%} Shop Dropdown {%- endcomment -%}
+          {%- if section.settings.show_shop_link -%}
+          <li class="nav-dropdown">
+            <a href="{{ routes.all_products_collection_url }}" class="nav-link">
+              Shop
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <div class="nav-dropdown-content">
+              <ul>
+                <li><a href="{{ collections['wellness'].url | default: '#' }}">Wellness</a></li>
+                <li><a href="{{ collections['supplements'].url | default: '#' }}">Supplements</a></li>
+                <li><a href="{{ collections['gift-cards'].url | default: '#' }}">Gift Cards</a></li>
+              </ul>
+            </div>
+          </li>
+          {%- endif -%}
+        </ul>
+
+        {%- comment -%} Book CTA Button {%- endcomment -%}
+        <a href="{{ section.settings.book_url | default: '/pages/book' }}" class="btn btn--primary nav-book-btn">
+          {{ section.settings.book_text | default: 'Book' }}
+        </a>
+      </nav>
+
+      {%- comment -%} Mobile Menu Toggle {%- endcomment -%}
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Mobile Navigation {%- endcomment -%}
+<div class="mobile-nav-overlay" aria-hidden="true">
+  <div class="mobile-nav-content">
+    <nav class="mobile-nav">
+      <ul class="mobile-nav-list">
+        <li><a href="{{ pages['sanctuary'].url | default: '#' }}">Sanctuary</a></li>
+        <li><a href="{{ collections['experiences'].url | default: '#' }}">Experiences</a></li>
+        <li><a href="{{ pages['memberships'].url | default: '#' }}">Memberships</a></li>
+        <li><a href="{{ pages['events'].url | default: '#' }}">Private Events</a></li>
+        <li><a href="{{ pages['about'].url | default: '#' }}">About</a></li>
+      </ul>
+      <a href="{{ section.settings.book_url | default: '/pages/book' }}" class="btn btn--primary mobile-book-btn">
+        Book Your Experience
+      </a>
+    </nav>
+  </div>
+</div>
+
+<style>
+  .site-header {
+    --header-bg: transparent;
+    --header-text: var(--color-deep-earth);
+  }
+
+  .hero + .main-content .site-header,
+  .site-header.header-transparent {
+    --header-text: var(--color-sanctuary-white);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+  }
+
+  .site-logo {
+    z-index: 10;
+  }
+
+  .logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--header-text);
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--header-text);
+    padding: 0.5rem 0;
+    position: relative;
+  }
+
+  .nav-link svg {
+    width: 10px;
+    height: 6px;
+    transition: transform var(--transition-smooth);
+  }
+
+  .nav-dropdown:hover .nav-link svg {
+    transform: rotate(180deg);
+  }
+
+  .nav-dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    background: var(--color-sanctuary-white);
+    border-radius: var(--radius-organic-md);
+    padding: 1.5rem;
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 20px 60px rgba(44, 24, 16, 0.12);
+    z-index: 100;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(10px);
+  }
+
+  .nav-dropdown-content ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-dropdown-content li {
+    margin: 0;
+  }
+
+  .nav-dropdown-content a {
+    display: block;
+    padding: 0.625rem 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--color-deep-earth);
+    border-bottom: 1px solid rgba(44, 24, 16, 0.06);
+    transition: color var(--transition-smooth), padding-left var(--transition-smooth);
+  }
+
+  .nav-dropdown-content li:last-child a {
+    border-bottom: none;
+  }
+
+  .nav-dropdown-content a:hover {
+    color: var(--color-burnt-sienna);
+    padding-left: 0.5rem;
+  }
+
+  .nav-book-btn {
+    padding: 0.75rem 1.75rem;
+    font-size: 0.6875rem;
+  }
+
+  /* Mobile Toggle */
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 24px;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--header-text);
+    transition: all var(--transition-smooth);
+  }
+
+  /* Mobile Overlay */
+  .mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--color-deep-earth);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-smooth);
+  }
+
+  .mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-nav-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    text-align: center;
+    margin: 0 0 2rem;
+    padding: 0;
+  }
+
+  .mobile-nav-list li {
+    margin: 1rem 0;
+  }
+
+  .mobile-nav-list a {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--color-sanctuary-white);
+    transition: color var(--transition-smooth);
+  }
+
+  .mobile-nav-list a:hover {
+    color: var(--color-burnt-sienna);
+  }
+
+  @media (max-width: 1024px) {
+    .main-nav {
+      display: none;
+    }
+
+    .mobile-menu-toggle {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const overlay = document.querySelector('.mobile-nav-overlay');
+    const hamburger = toggle?.querySelector('.hamburger');
+
+    toggle?.addEventListener('click', function() {
+      const isOpen = overlay.classList.toggle('active');
+      toggle.setAttribute('aria-expanded', isOpen);
+      overlay.setAttribute('aria-hidden', !isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      
+      // Animate hamburger
+      if (isOpen) {
+        hamburger.classList.add('is-active');
+      } else {
+        hamburger.classList.remove('is-active');
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "section",
+  "class": "header-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text (if no image)",
+      "default": "BREATHE"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Labels"
+    },
+    {
+      "type": "text",
+      "id": "nav_sanctuary",
+      "label": "Sanctuary Link",
+      "default": "Sanctuary"
+    },
+    {
+      "type": "text",
+      "id": "nav_experiences",
+      "label": "Experiences Link",
+      "default": "Experiences"
+    },
+    {
+      "type": "text",
+      "id": "nav_memberships",
+      "label": "Memberships Link",
+      "default": "Memberships"
+    },
+    {
+      "type": "text",
+      "id": "nav_events",
+      "label": "Events Link",
+      "default": "Events"
+    },
+    {
+      "type": "text",
+      "id": "nav_about",
+      "label": "About Link",
+      "default": "About"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shop_link",
+      "label": "Show Shop Link",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Book Button"
+    },
+    {
+      "type": "url",
+      "id": "book_url",
+      "label": "Book Button URL"
+    },
+    {
+      "type": "text",
+      "id": "book_text",
+      "label": "Book Button Text",
+      "default": "Book"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+
+

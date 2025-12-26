@@ -1,0 +1,622 @@
+{%- comment -%}
+  BREATHE WELLNESS SANCTUARY - Private Events Section
+  "After Hours" Revenue Stream - Club rentals, celebrations, corporate wellness
+  Inspired by Remedy Place events page
+{%- endcomment -%}
+
+<section class="events-section" data-section-id="{{ section.id }}">
+  <div class="container">
+    {%- comment -%} Section Header {%- endcomment -%}
+    <div class="events-header text-center" data-animate="fade-in-up">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="section-eyebrow section-eyebrow--light">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      
+      <h2 class="events-main-heading">{{ section.settings.heading | default: 'Private Events' }}</h2>
+      
+      {%- if section.settings.subheading != blank -%}
+        <p class="events-main-subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Event Types Grid {%- endcomment -%}
+    <div class="events-types-grid">
+      {%- for block in section.blocks -%}
+        <div class="event-type-card organic-container" 
+             data-animate="fade-in-up" 
+             data-delay="{{ forloop.index }}"
+             {{ block.shopify_attributes }}>
+          
+          <div class="events-grid">
+            {%- comment -%} Content Side {%- endcomment -%}
+            <div class="events-content {% if forloop.index | modulo: 2 == 0 %}order-2{% endif %}">
+              {%- if block.settings.label != blank -%}
+                <h3 class="events-label">{{ block.settings.label }}</h3>
+              {%- endif -%}
+              
+              <h2 class="events-title">{{ block.settings.title }}</h2>
+              
+              {%- if block.settings.description != blank -%}
+                <p class="events-description">{{ block.settings.description }}</p>
+              {%- endif -%}
+
+              {%- comment -%} Features List {%- endcomment -%}
+              <ul class="events-list">
+                {%- if block.settings.feature_1 != blank -%}
+                  <li>{{ block.settings.feature_1 }}</li>
+                {%- endif -%}
+                {%- if block.settings.feature_2 != blank -%}
+                  <li>{{ block.settings.feature_2 }}</li>
+                {%- endif -%}
+                {%- if block.settings.feature_3 != blank -%}
+                  <li>{{ block.settings.feature_3 }}</li>
+                {%- endif -%}
+                {%- if block.settings.feature_4 != blank -%}
+                  <li>{{ block.settings.feature_4 }}</li>
+                {%- endif -%}
+              </ul>
+
+              {%- if block.settings.button_text != blank -%}
+                <a href="{{ block.settings.button_url | default: '/pages/events' }}" class="btn btn--primary">
+                  {{ block.settings.button_text }}
+                </a>
+              {%- endif -%}
+            </div>
+
+            {%- comment -%} Image Side {%- endcomment -%}
+            <div class="events-image {% if forloop.index | modulo: 2 == 0 %}order-1{% endif %}">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 800 }}"
+                     alt="{{ block.settings.title | escape }}"
+                     loading="lazy"
+                     width="800"
+                     height="600">
+              {%- else -%}
+                <div class="events-image-placeholder bg-tadelakt"></div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Brands / Social Proof {%- endcomment -%}
+    {%- if section.settings.show_brands -%}
+      <div class="events-brands" data-animate="fade-in-up">
+        <h4 class="brands-title">{{ section.settings.brands_title | default: 'Events We\'ve Hosted' }}</h4>
+        <div class="logos-grid">
+          {%- for i in (1..8) -%}
+            {%- assign logo_setting = 'brand_logo_' | append: i -%}
+            {%- assign name_setting = 'brand_name_' | append: i -%}
+            {%- if section.settings[logo_setting] != blank -%}
+              <div class="logo-item">
+                <img src="{{ section.settings[logo_setting] | image_url: width: 150 }}"
+                     alt="{{ section.settings[name_setting] | escape }}"
+                     width="150"
+                     height="60">
+              </div>
+            {%- elsif section.settings[name_setting] != blank -%}
+              <div class="logo-item logo-text">
+                {{ section.settings[name_setting] }}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Request Proposal CTA {%- endcomment -%}
+    <div class="events-cta text-center" data-animate="fade-in-up">
+      <h3>{{ section.settings.cta_heading | default: 'Ready to Plan Your Event?' }}</h3>
+      <p>{{ section.settings.cta_text | default: 'Our events team will personally guide you through every detail.' }}</p>
+      <a href="{{ section.settings.cta_button_url | default: '/pages/contact' }}" class="btn btn--primary">
+        {{ section.settings.cta_button_text | default: 'Request a Proposal' }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .events-section {
+    padding: var(--space-xl) 0;
+    background: var(--color-deep-earth);
+    color: var(--color-sanctuary-white);
+  }
+
+  .events-header {
+    max-width: 800px;
+    margin: 0 auto var(--space-xl);
+    opacity: 0;
+  }
+
+  .events-header.animated {
+    opacity: 1;
+  }
+
+  .section-eyebrow--light {
+    color: var(--color-warm-glow);
+  }
+
+  .events-main-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--color-sanctuary-white);
+    margin-bottom: var(--space-sm);
+  }
+
+  .events-main-subheading {
+    font-size: 1.25rem;
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Event Type Cards */
+  .events-types-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .event-type-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-organic-xl);
+    padding: var(--space-lg);
+    opacity: 0;
+  }
+
+  .event-type-card.animated {
+    opacity: 1;
+  }
+
+  .event-type-card .events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  @media (max-width: 1024px) {
+    .event-type-card .events-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .order-1, .order-2 {
+      order: unset !important;
+    }
+  }
+
+  .events-content {
+    padding: var(--space-md) 0;
+  }
+
+  .events-label {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-warm-glow);
+    margin-bottom: var(--space-xs);
+  }
+
+  .events-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 400;
+    color: var(--color-sanctuary-white);
+    margin-bottom: var(--space-sm);
+  }
+
+  .events-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.85;
+    margin-bottom: var(--space-md);
+  }
+
+  .events-list {
+    list-style: none;
+    margin: 0 0 var(--space-md);
+    padding: 0;
+  }
+
+  .events-list li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 0.9375rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .events-list li:last-child {
+    border-bottom: none;
+  }
+
+  .events-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--color-burnt-sienna);
+    border-radius: 50%;
+  }
+
+  .events-image {
+    border-radius: var(--radius-organic-lg);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  .events-image img,
+  .events-image-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .event-type-card:hover .events-image img {
+    transform: scale(1.05);
+  }
+
+  /* Brands Section */
+  .events-brands {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    opacity: 0;
+  }
+
+  .events-brands.animated {
+    opacity: 1;
+  }
+
+  .brands-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--space-md);
+  }
+
+  .events-section .logos-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .events-section .logo-item {
+    opacity: 0.4;
+    filter: grayscale(100%) brightness(200%);
+    transition: all var(--transition-smooth);
+  }
+
+  .events-section .logo-item:hover {
+    opacity: 1;
+    filter: grayscale(0%) brightness(100%);
+  }
+
+  .events-section .logo-item img {
+    height: 35px;
+    width: auto;
+  }
+
+  .logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-sanctuary-white);
+  }
+
+  /* CTA Section */
+  .events-cta {
+    margin-top: var(--space-xl);
+    padding: var(--space-xl);
+    background: rgba(196, 101, 74, 0.15);
+    border-radius: var(--radius-organic-lg);
+    opacity: 0;
+  }
+
+  .events-cta.animated {
+    opacity: 1;
+  }
+
+  .events-cta h3 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 400;
+    color: var(--color-sanctuary-white);
+    margin-bottom: var(--space-xs);
+  }
+
+  .events-cta p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: var(--space-md);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Private Events",
+  "tag": "section",
+  "class": "events-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "After Hours"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Make Your Event Healthy, Social & Unforgettable"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Private club rentals, special celebrations, and corporate wellness designed to make people feel better together."
+    },
+    {
+      "type": "header",
+      "content": "Brands Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_brands",
+      "label": "Show Brands",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "brands_title",
+      "label": "Brands Section Title",
+      "default": "Events We've Hosted"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_1",
+      "label": "Brand Logo 1"
+    },
+    {
+      "type": "text",
+      "id": "brand_name_1",
+      "label": "Brand Name 1",
+      "default": "Soho House"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_2",
+      "label": "Brand Logo 2"
+    },
+    {
+      "type": "text",
+      "id": "brand_name_2",
+      "label": "Brand Name 2",
+      "default": "Nike"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_3",
+      "label": "Brand Logo 3"
+    },
+    {
+      "type": "text",
+      "id": "brand_name_3",
+      "label": "Brand Name 3",
+      "default": "HBO"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_4",
+      "label": "Brand Logo 4"
+    },
+    {
+      "type": "text",
+      "id": "brand_name_4",
+      "label": "Brand Name 4",
+      "default": "Goldman Sachs"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_5",
+      "label": "Brand Logo 5"
+    },
+    {
+      "type": "text",
+      "id": "brand_name_5",
+      "label": "Brand Name 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_6",
+      "label": "Brand Logo 6"
+    },
+    {
+      "type": "text",
+      "id": "brand_name_6",
+      "label": "Brand Name 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_7",
+      "label": "Brand Logo 7"
+    },
+    {
+      "type": "text",
+      "id": "brand_name_7",
+      "label": "Brand Name 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo_8",
+      "label": "Brand Logo 8"
+    },
+    {
+      "type": "text",
+      "id": "brand_name_8",
+      "label": "Brand Name 8"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA Heading",
+      "default": "Ready to Plan Your Event?"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Our events team will personally guide you through every detail."
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA Button Text",
+      "default": "Request a Proposal"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_url",
+      "label": "CTA Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "event_type",
+      "name": "Event Type",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Private Rentals"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Your Club. Your Guest List. Our Team."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Full takeovers, semi-private spaces, or after-hours rentals. Every event is fully staffed with curated experiences."
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature 1",
+          "default": "Open access to signature experiences"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature 2",
+          "default": "White-glove hosting and operations"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature 3",
+          "default": "Custom run-of-show for your goals"
+        },
+        {
+          "type": "text",
+          "id": "feature_4",
+          "label": "Feature 4"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Plan a Takeover"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Private Events",
+      "category": "Events",
+      "blocks": [
+        {
+          "type": "event_type",
+          "settings": {
+            "label": "Private Club Rentals",
+            "title": "Your Club. Your Guest List. Our Team.",
+            "description": "Full takeovers, semi-private spaces, or after-hours rentals. Every event is fully staffed with curated Tech-Remedies and social experiences.",
+            "feature_1": "Open access to signature experiences",
+            "feature_2": "White-glove hosting and operations",
+            "feature_3": "Custom run-of-show for your goals",
+            "button_text": "Plan a Takeover"
+          }
+        },
+        {
+          "type": "event_type",
+          "settings": {
+            "label": "Special Celebrations",
+            "title": "Celebrate in a Way That Feels Good",
+            "description": "Birthdays, bachelor and bachelorette, pre or post wedding gatherings. Swap late nights for something people will remember.",
+            "feature_1": "Breathwork & ice bath energy",
+            "feature_2": "Sauna socials and red light glow",
+            "feature_3": "IV lounge conversations",
+            "button_text": "Celebrate at Breathe"
+          }
+        },
+        {
+          "type": "event_type",
+          "settings": {
+            "label": "Corporate Wellness",
+            "title": "Performance Without the Burnout",
+            "description": "In a world that expects more from teams while giving them less time to recover, we offer a better way.",
+            "feature_1": "Team outings",
+            "feature_2": "Leadership retreats",
+            "feature_3": "Client hosting",
+            "feature_4": "Holiday parties",
+            "button_text": "Design a Team Experience"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+
+
+
+
+

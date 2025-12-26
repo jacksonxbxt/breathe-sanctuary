@@ -1,0 +1,137 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-video",
+      "settings": {
+        "eyebrow": "Memberships",
+        "heading": "Build Your Recovery Routine",
+        "subheading": "The most valuable way to experience Breathe—4-16 monthly Tech-Remedy Credits, unlimited ice baths, guest passes, and member-only pricing. Credits rollover month-to-month.",
+        "primary_button_text": "Join Now",
+        "primary_button_url": "#membership-tiers",
+        "secondary_button_text": "Schedule a Tour",
+        "secondary_button_url": "/pages/contact",
+        "hero_height": 70,
+        "text_alignment": "center",
+        "show_scroll_indicator": false,
+        "overlay_opacity_top": 30,
+        "overlay_opacity_bottom": 60,
+        "warm_filter_intensity": 10
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Why Membership?",
+        "text": "<p>Membership at Breathe Wellness Sanctuary gives you the most rewarding way to build your recovery routine. While you don't need to be a member to book our experiences, members unlock unmatched value: 4-16 monthly Tech-Remedy Credits, unlimited ice baths, guest passes, and member-only pricing.</p><p>With thoughtfully limited memberships per location, you'll enjoy an inclusive community while experiencing the exclusivity, savings, and consistency that make the Breathe lifestyle easier to sustain. Credits rollover month-to-month, so you never lose value.</p>"
+      }
+    },
+    "tiers": {
+      "type": "membership-tiers",
+      "settings": {
+        "eyebrow": "Choose Your Path",
+        "heading": "Choose Your Membership Tier",
+        "subheading": "Select the tier that matches your recovery goals. Upgrade, downgrade, or pause anytime after your 3-month initial commitment.",
+        "show_credit_explainer": true,
+        "bottom_text": "Questions about memberships? Email membership@breathewellness.com"
+      },
+      "blocks": {
+        "restore": {
+          "type": "tier",
+          "settings": {
+            "tier_label": "Tier 1",
+            "name": "The Restore",
+            "price": "$395",
+            "credits": "4",
+            "featured": false,
+            "feature_1": "4 Tech-Remedy Credits Monthly",
+            "feature_2": "Unlimited Ice Baths",
+            "feature_3": "Unlimited Cryotherapy",
+            "feature_4": "1 Guest Pass Per Month",
+            "feature_5": "Member Pricing on All Services",
+            "feature_6": "Credits Rollover Month-to-Month"
+          }
+        },
+        "ritual": {
+          "type": "tier",
+          "settings": {
+            "tier_label": "Most Popular",
+            "name": "The Ritual",
+            "price": "$695",
+            "credits": "8",
+            "featured": true,
+            "feature_1": "8 Tech-Remedy Credits Monthly",
+            "feature_2": "Unlimited Ice Baths & Cryotherapy",
+            "feature_3": "Unlimited Red Light Therapy",
+            "feature_4": "2 Guest Passes Per Month",
+            "feature_5": "Priority Booking",
+            "feature_6": "Member Pricing on All Services",
+            "feature_7": "Access to Member Events",
+            "feature_8": "Credits Rollover Month-to-Month"
+          }
+        },
+        "sanctuary": {
+          "type": "tier",
+          "settings": {
+            "tier_label": "Tier 3",
+            "name": "The Sanctuary",
+            "price": "$1,195",
+            "credits": "16",
+            "featured": false,
+            "feature_1": "16 Tech-Remedy Credits Monthly",
+            "feature_2": "All Ritual Benefits Included",
+            "feature_3": "4 Guest Passes Per Month",
+            "feature_4": "Concierge Booking Service",
+            "feature_5": "Complimentary Locker",
+            "feature_6": "Exclusive Sanctuary Events",
+            "feature_7": "Annual Wellness Consultation",
+            "feature_8": "Credits Rollover Month-to-Month"
+          }
+        }
+      },
+      "block_order": ["restore", "ritual", "sanctuary"]
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "heading": "Membership FAQ"
+      },
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use all of my Tech-Remedy Credits in one day?",
+            "answer": "Yes, you're welcome to use multiple Credits in a single day. Just let us know and we'll help you create the ideal lineup based on your recovery goals—whether you want to accelerate recovery, reduce inflammation, or optimize performance."
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I upgrade or downgrade my membership tier later on?",
+            "answer": "Absolutely. After your 3-month commitment, you can shift between tiers at any time. Just reach out to your club concierge and we'll make it smooth."
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "How long do my rollover Credits last?",
+            "answer": "Rollover Credits are retained month-to-month as long as your membership remains active. If you cancel or pause, any unused Credits will expire at the end of your membership period."
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Do memberships auto-renew?",
+            "answer": "Yes, memberships renew monthly after your 3-month minimum. You can cancel, pause, or change tiers any time after that period with just a quick email to our team."
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4"]
+    }
+  },
+  "order": ["hero", "intro", "tiers", "faq"]
+}
+
+
+
+
+

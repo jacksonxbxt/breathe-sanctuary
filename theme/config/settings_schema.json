@@ -1,0 +1,217 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Breathe Wellness Sanctuary",
+    "theme_version": "1.0.0",
+    "theme_author": "Breathe",
+    "theme_documentation_url": "https://breathewellness.com/docs",
+    "theme_support_url": "https://breathewellness.com/support"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Breathe Material Palette"
+      },
+      {
+        "type": "color",
+        "id": "color_burnt_sienna_tadelakt",
+        "label": "Burnt Sienna Tadelakt (FF-01)",
+        "default": "#C4654A",
+        "info": "Primary accent from master plans"
+      },
+      {
+        "type": "color",
+        "id": "color_oak_wood",
+        "label": "Oak Wood (W-01)",
+        "default": "#A67C52",
+        "info": "Warm wood tones"
+      },
+      {
+        "type": "color",
+        "id": "color_terracotta",
+        "label": "Terracotta Tiles (FT-03)",
+        "default": "#B85C38",
+        "info": "Floor tile accent"
+      },
+      {
+        "type": "color",
+        "id": "color_warm_cream",
+        "label": "Warm Cream",
+        "default": "#F5EDE4",
+        "info": "Background base"
+      },
+      {
+        "type": "color",
+        "id": "color_deep_earth",
+        "label": "Deep Earth",
+        "default": "#2C1810",
+        "info": "Dark accent for contrast"
+      },
+      {
+        "type": "color",
+        "id": "color_sanctuary_white",
+        "label": "Sanctuary White",
+        "default": "#FDFBF8",
+        "info": "Light background"
+      },
+      {
+        "type": "header",
+        "content": "Warm Glow Effects"
+      },
+      {
+        "type": "color",
+        "id": "color_warm_glow",
+        "label": "2700K Warm Glow",
+        "default": "#FFD9A8",
+        "info": "Warm lighting overlay for hover states"
+      },
+      {
+        "type": "range",
+        "id": "glow_intensity",
+        "label": "Glow Intensity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "default": 15,
+        "unit": "%"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading Font",
+        "default": "cormorant_garamond_n4",
+        "info": "Elegant serif for sanctuary feel"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body Font",
+        "default": "work_sans_n4",
+        "info": "Clean sans-serif for readability"
+      },
+      {
+        "type": "range",
+        "id": "font_scale",
+        "label": "Base Font Scale",
+        "min": 100,
+        "max": 150,
+        "step": 5,
+        "default": 100,
+        "unit": "%"
+      }
+    ]
+  },
+  {
+    "name": "Membership Credits",
+    "settings": [
+      {
+        "type": "header",
+        "content": "The Restore Tier"
+      },
+      {
+        "type": "text",
+        "id": "tier_restore_name",
+        "label": "Tier Name",
+        "default": "The Restore"
+      },
+      {
+        "type": "text",
+        "id": "tier_restore_price",
+        "label": "Monthly Price",
+        "default": "$395"
+      },
+      {
+        "type": "text",
+        "id": "tier_restore_credits",
+        "label": "Monthly Credits",
+        "default": "4"
+      },
+      {
+        "type": "header",
+        "content": "The Ritual Tier"
+      },
+      {
+        "type": "text",
+        "id": "tier_ritual_name",
+        "label": "Tier Name",
+        "default": "The Ritual"
+      },
+      {
+        "type": "text",
+        "id": "tier_ritual_price",
+        "label": "Monthly Price",
+        "default": "$695"
+      },
+      {
+        "type": "text",
+        "id": "tier_ritual_credits",
+        "label": "Monthly Credits",
+        "default": "8"
+      },
+      {
+        "type": "header",
+        "content": "The Sanctuary Tier"
+      },
+      {
+        "type": "text",
+        "id": "tier_sanctuary_name",
+        "label": "Tier Name",
+        "default": "The Sanctuary"
+      },
+      {
+        "type": "text",
+        "id": "tier_sanctuary_price",
+        "label": "Monthly Price",
+        "default": "$1,195"
+      },
+      {
+        "type": "text",
+        "id": "tier_sanctuary_credits",
+        "label": "Monthly Credits",
+        "default": "16"
+      }
+    ]
+  },
+  {
+    "name": "Social Features",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_group_booking",
+        "label": "Enable Group/Pair Bookings",
+        "default": true,
+        "info": "Allow social self-care bookings"
+      },
+      {
+        "type": "range",
+        "id": "max_group_size",
+        "label": "Maximum Group Size",
+        "min": 2,
+        "max": 8,
+        "step": 1,
+        "default": 4
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_plus_one",
+        "label": "Enable Complimentary Plus-One",
+        "default": true,
+        "info": "Members can bring a guest"
+      }
+    ]
+  }
+]
+
+
+
+
+
+
+

@@ -1,0 +1,234 @@
+{
+  "sections": {
+    "hero-video": {
+      "type": "hero-video",
+      "settings": {
+        "eyebrow": "Welcome to Breathe",
+        "heading": "Self-Care Made Social",
+        "subheading": "Where science-backed recovery meets community. Experience 60-minute restoration in Phuket's premier wellness sanctuary—designed to accelerate recovery, reduce inflammation, and optimize performance.",
+        "primary_button_text": "Book Your Experience",
+        "primary_button_url": "/pages/book",
+        "secondary_button_text": "Explore Memberships",
+        "secondary_button_url": "/pages/memberships",
+        "hero_height": 100,
+        "text_alignment": "center",
+        "show_scroll_indicator": true,
+        "overlay_opacity_top": 20,
+        "overlay_opacity_bottom": 50,
+        "warm_filter_intensity": 8
+      }
+    },
+    "experiences": {
+      "type": "experiences-grid",
+      "settings": {
+        "eyebrow": "Tech-Remedies",
+        "heading": "Accelerate Recovery in Our Tech-Remedies",
+        "subheading": "Privately reserved experiences designed to accelerate recovery, reduce inflammation, and optimize performance. Book for yourself or transform recovery into a social experience—bring up to 6 people.",
+        "show_filters": true
+      },
+      "blocks": {
+        "hbot": {
+          "type": "experience",
+          "settings": {
+            "title": "HBOT Chamber",
+            "category": "tech-remedy",
+            "category_label": "Tech-Remedy",
+            "credits": "4",
+            "description": "Accelerate recovery with 10x more oxygen to your cells. Our HBOT chamber reduces inflammation, speeds muscle repair, and enhances cognitive function—trusted by elite athletes and biohackers worldwide.",
+            "allows_group_booking": true,
+            "max_group_size": 2
+          }
+        },
+        "contrast": {
+          "type": "experience",
+          "settings": {
+            "title": "Contrast Suite",
+            "category": "contrast",
+            "category_label": "Contrast Therapy",
+            "credits": "3",
+            "description": "Reduce inflammation by 40% in 24 hours with our signature thermal circuit. Guided rotation of sauna and ice bath accelerates recovery, improves circulation, and enhances mental clarity.",
+            "allows_group_booking": true,
+            "max_group_size": 4
+          }
+        },
+        "sauna": {
+          "type": "experience",
+          "settings": {
+            "title": "Sauna Suite",
+            "category": "tech-remedy",
+            "category_label": "Tech-Remedy",
+            "credits": "2",
+            "description": "Reduce muscle soreness and boost recovery in your private sauna suite. Heat therapy soothes muscles, accelerates metabolism, and activates heat shock proteins for cellular repair. Traditional sauna and steam options available.",
+            "allows_group_booking": true,
+            "max_group_size": 2
+          }
+        },
+        "ice-bath": {
+          "type": "experience",
+          "settings": {
+            "title": "Guided Ice Bath",
+            "category": "social",
+            "category_label": "Social Experience",
+            "credits": "3",
+            "description": "Increase dopamine by 250% and reduce inflammation with guided breathwork and cold immersion. Join the #6minuteclub—a transformative social experience for up to 6 people.",
+            "allows_group_booking": true,
+            "max_group_size": 6
+          }
+        },
+        "iv": {
+          "type": "experience",
+          "settings": {
+            "title": "IV Vitamin Therapy",
+            "category": "alternative",
+            "category_label": "Alternative Medicine",
+            "credits": "4",
+            "description": "Boost energy and optimize recovery with bespoke IV drips tailored to your needs. Experience 100% nutrient absorption in our social IV suites—perfect for groups up to 4.",
+            "allows_group_booking": true,
+            "max_group_size": 4
+          }
+        },
+        "red-light": {
+          "type": "experience",
+          "settings": {
+            "title": "Red Light Therapy",
+            "category": "tech-remedy",
+            "category_label": "Tech-Remedy",
+            "credits": "1",
+            "description": "Increase collagen production by 30% and accelerate muscle recovery with targeted red light wavelengths (630-850nm). Enhance cellular energy production and reduce inflammation in just 15 minutes.",
+            "allows_group_booking": false
+          }
+        }
+      },
+      "block_order": ["hbot", "contrast", "sauna", "ice-bath", "iv", "red-light"]
+    },
+    "memberships": {
+      "type": "membership-tiers",
+      "settings": {
+        "eyebrow": "Memberships",
+        "heading": "Build Your Recovery Routine",
+        "subheading": "An inclusive community with thoughtfully limited memberships. Build your recovery routine with 4-16 monthly Tech-Remedy Credits, unlimited ice baths, and member-only pricing—starting at $395/month.",
+        "show_credit_explainer": true,
+        "bottom_text": "Not sure which tier is right for you? Our team can help.",
+        "bottom_button_text": "Schedule a Tour"
+      },
+      "blocks": {
+        "restore": {
+          "type": "tier",
+          "settings": {
+            "tier_label": "Tier 1",
+            "name": "The Restore",
+            "price": "$395",
+            "credits": "4",
+            "featured": false,
+            "feature_1": "4 Tech-Remedy Credits Monthly",
+            "feature_2": "Unlimited Ice Baths",
+            "feature_3": "Unlimited Cryotherapy",
+            "feature_4": "1 Guest Pass Per Month",
+            "feature_5": "Member Pricing on All Services",
+            "feature_6": "Credits Rollover Month-to-Month"
+          }
+        },
+        "ritual": {
+          "type": "tier",
+          "settings": {
+            "tier_label": "Most Popular",
+            "name": "The Ritual",
+            "price": "$695",
+            "credits": "8",
+            "featured": true,
+            "feature_1": "8 Tech-Remedy Credits Monthly",
+            "feature_2": "Unlimited Ice Baths & Cryotherapy",
+            "feature_3": "Unlimited Red Light Therapy",
+            "feature_4": "2 Guest Passes Per Month",
+            "feature_5": "Priority Booking",
+            "feature_6": "Member Pricing on All Services",
+            "feature_7": "Access to Member Events",
+            "feature_8": "Credits Rollover Month-to-Month"
+          }
+        },
+        "sanctuary": {
+          "type": "tier",
+          "settings": {
+            "tier_label": "Tier 3",
+            "name": "The Sanctuary",
+            "price": "$1,195",
+            "credits": "16",
+            "featured": false,
+            "feature_1": "16 Tech-Remedy Credits Monthly",
+            "feature_2": "All Ritual Benefits Included",
+            "feature_3": "4 Guest Passes Per Month",
+            "feature_4": "Concierge Booking Service",
+            "feature_5": "Complimentary Locker",
+            "feature_6": "Exclusive Sanctuary Events",
+            "feature_7": "Annual Wellness Consultation",
+            "feature_8": "Credits Rollover Month-to-Month"
+          }
+        }
+      },
+      "block_order": ["restore", "ritual", "sanctuary"]
+    },
+    "events": {
+      "type": "private-events",
+      "settings": {
+        "eyebrow": "After Hours",
+        "heading": "Transform Your Event Into Recovery",
+        "subheading": "Private club rentals, special celebrations, and corporate wellness experiences. Make people feel better together with curated Tech-Remedies and social experiences.",
+        "show_brands": true,
+        "brands_title": "Events We've Hosted",
+        "brand_name_1": "Soho House",
+        "brand_name_2": "Nike",
+        "brand_name_3": "HBO",
+        "brand_name_4": "Goldman Sachs",
+        "cta_heading": "Ready to Plan Your Event?",
+        "cta_text": "Our events team will personally guide you through every detail.",
+        "cta_button_text": "Request a Proposal"
+      },
+      "blocks": {
+        "rentals": {
+          "type": "event_type",
+          "settings": {
+            "label": "Private Club Rentals",
+            "title": "Your Club. Your Guest List. Our Team.",
+            "description": "Full takeovers, semi-private spaces, or after-hours rentals. Every event is fully staffed with curated Tech-Remedies and social experiences.",
+            "feature_1": "Open access to signature experiences",
+            "feature_2": "White-glove hosting and operations",
+            "feature_3": "Custom run-of-show for your goals",
+            "button_text": "Plan a Takeover"
+          }
+        },
+        "celebrations": {
+          "type": "event_type",
+          "settings": {
+            "label": "Special Celebrations",
+            "title": "Celebrate in a Way That Feels Good",
+            "description": "Birthdays, bachelor and bachelorette parties, pre or post-wedding gatherings. Transform your celebration into a recovery experience people will remember—breathwork, ice baths, and social wellness.",
+            "feature_1": "Breathwork & ice bath energy",
+            "feature_2": "Sauna socials and red light glow",
+            "feature_3": "IV lounge conversations",
+            "button_text": "Celebrate at Breathe"
+          }
+        },
+        "corporate": {
+          "type": "event_type",
+          "settings": {
+            "label": "Corporate Wellness",
+            "title": "Performance Without the Burnout",
+            "description": "In a world that expects more from teams while giving them less time to recover, we offer a better way.",
+            "feature_1": "Team outings",
+            "feature_2": "Leadership retreats",
+            "feature_3": "Client hosting",
+            "feature_4": "Holiday parties",
+            "button_text": "Design a Team Experience"
+          }
+        }
+      },
+      "block_order": ["rentals", "celebrations", "corporate"]
+    }
+  },
+  "order": ["hero-video", "experiences", "memberships", "events"]
+}
+
+
+
+
+

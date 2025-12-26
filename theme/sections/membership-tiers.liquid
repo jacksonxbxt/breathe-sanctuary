@@ -1,0 +1,606 @@
+{%- comment -%}
+  BREATHE WELLNESS SANCTUARY - Membership Tiers Section
+  Credit-based membership system inspired by Remedy Place
+  Tiers: The Restore, The Ritual, The Sanctuary
+{%- endcomment -%}
+
+<section class="membership-section" data-section-id="{{ section.id }}">
+  <div class="container">
+    {%- comment -%} Section Header {%- endcomment -%}
+    <div class="membership-header text-center" data-animate="fade-in-up">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      
+      <h2 class="membership-heading">{{ section.settings.heading | default: 'Membership Tiers' }}</h2>
+      
+      {%- if section.settings.subheading != blank -%}
+        <p class="membership-subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Membership Cards Grid {%- endcomment -%}
+    <div class="membership-grid">
+      {%- for block in section.blocks -%}
+        <div class="membership-card {% if block.settings.featured %}featured{% endif %}" 
+             data-animate="fade-in-up" 
+             data-delay="{{ forloop.index }}"
+             {{ block.shopify_attributes }}>
+          
+          {%- comment -%} Tier Badge {%- endcomment -%}
+          <span class="membership-tier">{{ block.settings.tier_label | default: 'Tier' }}</span>
+          
+          {%- comment -%} Name {%- endcomment -%}
+          <h3 class="membership-name">{{ block.settings.name }}</h3>
+          
+          {%- comment -%} Price {%- endcomment -%}
+          <div class="membership-price">
+            {{ block.settings.price }}
+            <span>/month</span>
+          </div>
+          
+          {%- comment -%} Credits Badge {%- endcomment -%}
+          <div class="membership-credits">
+            <span class="credit-badge">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <text x="8" y="12" font-size="9" text-anchor="middle" fill="currentColor">C</text>
+              </svg>
+              {{ block.settings.credits }} Tech-Remedy Credits
+            </span>
+          </div>
+          
+          {%- comment -%} Features List {%- endcomment -%}
+          <ul class="membership-features">
+            {%- if block.settings.feature_1 != blank -%}
+              <li>{{ block.settings.feature_1 }}</li>
+            {%- endif -%}
+            {%- if block.settings.feature_2 != blank -%}
+              <li>{{ block.settings.feature_2 }}</li>
+            {%- endif -%}
+            {%- if block.settings.feature_3 != blank -%}
+              <li>{{ block.settings.feature_3 }}</li>
+            {%- endif -%}
+            {%- if block.settings.feature_4 != blank -%}
+              <li>{{ block.settings.feature_4 }}</li>
+            {%- endif -%}
+            {%- if block.settings.feature_5 != blank -%}
+              <li>{{ block.settings.feature_5 }}</li>
+            {%- endif -%}
+            {%- if block.settings.feature_6 != blank -%}
+              <li>{{ block.settings.feature_6 }}</li>
+            {%- endif -%}
+          </ul>
+          
+          {%- comment -%} CTA Button {%- endcomment -%}
+          <a href="{{ block.settings.button_url | default: '/pages/memberships' }}" 
+             class="btn {% if block.settings.featured %}btn--primary{% else %}btn--secondary{% endif %}">
+            {{ block.settings.button_text | default: 'Join Now' }}
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Credit System Explanation {%- endcomment -%}
+    {%- if section.settings.show_credit_explainer -%}
+      <div class="credit-explainer organic-container" data-animate="fade-in-up" data-delay="5">
+        <div class="credit-explainer-inner">
+          <h4>How Tech-Remedy Credits Work</h4>
+          <div class="credit-grid">
+            <div class="credit-item">
+              <span class="credit-value">1</span>
+              <span class="credit-label">Remedy Roller / Red Light Therapy</span>
+            </div>
+            <div class="credit-item">
+              <span class="credit-value">2</span>
+              <span class="credit-label">Sauna Suite / Steam Room</span>
+            </div>
+            <div class="credit-item">
+              <span class="credit-value">3</span>
+              <span class="credit-label">Contrast Suite / Guided Ice Bath</span>
+            </div>
+            <div class="credit-item">
+              <span class="credit-value">4</span>
+              <span class="credit-label">HBOT Chamber / IV Vitamin Therapy</span>
+            </div>
+          </div>
+          <p class="credit-note">Credits rollover month-to-month, so you never lose value. Members also receive exclusive pricing on Alternative Medicine, classes, and special events.</p>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Bottom CTA {%- endcomment -%}
+    {%- if section.settings.bottom_text != blank -%}
+      <div class="membership-bottom text-center" data-animate="fade-in-up">
+        <p>{{ section.settings.bottom_text }}</p>
+        {%- if section.settings.bottom_button_text != blank -%}
+          <a href="{{ section.settings.bottom_button_url }}" class="btn btn--secondary">
+            {{ section.settings.bottom_button_text }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .membership-section {
+    padding: var(--space-xl) 0;
+    background: {{ section.settings.background_color }};
+  }
+
+  .membership-header {
+    max-width: 700px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .section-eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-burnt-sienna);
+    margin-bottom: var(--space-sm);
+  }
+
+  .membership-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    margin-bottom: var(--space-sm);
+  }
+
+  .membership-subheading {
+    font-size: 1.125rem;
+    color: rgba(44, 24, 16, 0.7);
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  .membership-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 1024px) {
+    .membership-grid {
+      grid-template-columns: 1fr;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+  }
+
+  .membership-card {
+    background: var(--color-sanctuary-white);
+    border-radius: var(--radius-organic-lg);
+    padding: var(--space-lg) var(--space-md);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+    opacity: 0;
+  }
+
+  .membership-card.animated {
+    opacity: 1;
+  }
+
+  .membership-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--color-oak-wood);
+    transition: all var(--transition-smooth);
+  }
+
+  .membership-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 80px rgba(44, 24, 16, 0.1);
+  }
+
+  .membership-card:hover::before {
+    background: var(--color-burnt-sienna);
+  }
+
+  /* Featured Card */
+  .membership-card.featured {
+    background: var(--color-deep-earth);
+    transform: scale(1.02);
+  }
+
+  .membership-card.featured::before {
+    height: 6px;
+    background: var(--color-burnt-sienna);
+  }
+
+  .membership-card.featured .membership-tier,
+  .membership-card.featured .membership-name,
+  .membership-card.featured .membership-price,
+  .membership-card.featured .membership-credits,
+  .membership-card.featured .membership-features li {
+    color: var(--color-sanctuary-white);
+  }
+
+  .membership-card.featured .credit-badge {
+    background: rgba(196, 101, 74, 0.3);
+    color: var(--color-warm-glow);
+  }
+
+  .membership-card.featured .membership-features li::before {
+    color: var(--color-burnt-sienna);
+  }
+
+  .membership-card.featured .membership-features li {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .membership-card.featured:hover {
+    transform: scale(1.02) translateY(-8px);
+  }
+
+  .membership-tier {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-burnt-sienna);
+    margin-bottom: var(--space-xs);
+  }
+
+  .membership-name {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin-bottom: var(--space-xs);
+    color: var(--color-deep-earth);
+  }
+
+  .membership-price {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--color-deep-earth);
+    margin-bottom: var(--space-xs);
+    line-height: 1;
+  }
+
+  .membership-price span {
+    font-size: 0.875rem;
+    font-family: var(--font-body);
+    opacity: 0.6;
+  }
+
+  .membership-credits {
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(44, 24, 16, 0.1);
+  }
+
+  .credit-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(196, 101, 74, 0.1);
+    color: var(--color-burnt-sienna);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  .membership-features {
+    list-style: none;
+    text-align: left;
+    margin: 0 0 var(--space-md);
+    padding: 0;
+  }
+
+  .membership-features li {
+    padding: 0.75rem 0;
+    padding-left: 1.75rem;
+    position: relative;
+    font-size: 0.9375rem;
+    border-bottom: 1px solid rgba(44, 24, 16, 0.06);
+    color: var(--color-deep-earth);
+  }
+
+  .membership-features li:last-child {
+    border-bottom: none;
+  }
+
+  .membership-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-burnt-sienna);
+    font-weight: 600;
+  }
+
+  .membership-card .btn {
+    width: 100%;
+    margin-top: auto;
+  }
+
+  /* Credit Explainer */
+  .credit-explainer {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg);
+    opacity: 0;
+  }
+
+  .credit-explainer.animated {
+    opacity: 1;
+  }
+
+  .credit-explainer h4 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+    text-align: center;
+  }
+
+  .credit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  @media (max-width: 768px) {
+    .credit-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .credit-item {
+    text-align: center;
+    padding: var(--space-sm);
+    background: var(--color-sanctuary-white);
+    border-radius: var(--radius-organic-sm);
+  }
+
+  .credit-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--color-burnt-sienna);
+    line-height: 1;
+  }
+
+  .credit-label {
+    display: block;
+    font-size: 0.8125rem;
+    color: rgba(44, 24, 16, 0.7);
+    margin-top: 0.5rem;
+  }
+
+  .credit-note {
+    text-align: center;
+    font-size: 0.875rem;
+    color: rgba(44, 24, 16, 0.6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Bottom CTA */
+  .membership-bottom {
+    margin-top: var(--space-lg);
+    opacity: 0;
+  }
+
+  .membership-bottom.animated {
+    opacity: 1;
+  }
+
+  .membership-bottom p {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-sm);
+    color: rgba(44, 24, 16, 0.7);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Membership Tiers",
+  "tag": "section",
+  "class": "membership-section-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F5EDE4"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Memberships"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Build Your Recovery Routine"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "An inclusive community with thoughtfully limited memberships. Build your recovery routine with 4-16 monthly Tech-Remedy Credits, unlimited ice baths, and member-only pricing—starting at $395/month."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_credit_explainer",
+      "label": "Show Credit Explainer",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "bottom_text",
+      "label": "Bottom Text",
+      "default": "Not sure which tier is right for you? Our team can help."
+    },
+    {
+      "type": "text",
+      "id": "bottom_button_text",
+      "label": "Bottom Button Text",
+      "default": "Schedule a Tour"
+    },
+    {
+      "type": "url",
+      "id": "bottom_button_url",
+      "label": "Bottom Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Membership Tier",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tier_label",
+          "label": "Tier Label",
+          "default": "Tier 1"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Tier Name",
+          "default": "The Restore"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "$395"
+        },
+        {
+          "type": "text",
+          "id": "credits",
+          "label": "Monthly Credits",
+          "default": "4"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured Tier",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature 1",
+          "default": "Unlimited Ice Baths"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature 2",
+          "default": "Unlimited Cryo"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature 3",
+          "default": "1 Guest Pass / Month"
+        },
+        {
+          "type": "text",
+          "id": "feature_4",
+          "label": "Feature 4",
+          "default": "Member Pricing on All Services"
+        },
+        {
+          "type": "text",
+          "id": "feature_5",
+          "label": "Feature 5"
+        },
+        {
+          "type": "text",
+          "id": "feature_6",
+          "label": "Feature 6"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Join Now"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Membership Tiers",
+      "category": "Memberships",
+      "blocks": [
+        {
+          "type": "tier",
+          "settings": {
+            "tier_label": "Tier 1",
+            "name": "The Restore",
+            "price": "$395",
+            "credits": "4",
+            "featured": false,
+            "feature_1": "Unlimited Ice Baths",
+            "feature_2": "Unlimited Cryo",
+            "feature_3": "1 Guest Pass / Month",
+            "feature_4": "Member Pricing on All Services"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "tier_label": "Most Popular",
+            "name": "The Ritual",
+            "price": "$695",
+            "credits": "8",
+            "featured": true,
+            "feature_1": "Unlimited Ice Baths & Cryo",
+            "feature_2": "Unlimited Red Light Therapy",
+            "feature_3": "2 Guest Passes / Month",
+            "feature_4": "Priority Booking",
+            "feature_5": "Member Pricing on All Services",
+            "feature_6": "Access to Member Events"
+          }
+        },
+        {
+          "type": "tier",
+          "settings": {
+            "tier_label": "Tier 3",
+            "name": "The Sanctuary",
+            "price": "$1,195",
+            "credits": "16",
+            "featured": false,
+            "feature_1": "All Ritual Benefits",
+            "feature_2": "4 Guest Passes / Month",
+            "feature_3": "Concierge Booking Service",
+            "feature_4": "Complimentary Locker",
+            "feature_5": "Exclusive Sanctuary Events",
+            "feature_6": "Annual Wellness Consultation"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+
+
+

@@ -1,0 +1,588 @@
+{%- comment -%}
+  BREATHE WELLNESS SANCTUARY - Experiences Grid Section
+  Tech-Remedies and Social Self-Care Offerings
+  Supports group/pair bookings for HBOT chambers, Contrast Suites, etc.
+{%- endcomment -%}
+
+<section class="experiences-section" data-section-id="{{ section.id }}">
+  <div class="container">
+    {%- comment -%} Section Header {%- endcomment -%}
+    <div class="experiences-header" data-animate="fade-in-up">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      
+      <h2 class="experiences-heading">{{ section.settings.heading | default: 'Our Experiences' }}</h2>
+      
+      {%- if section.settings.subheading != blank -%}
+        <p class="experiences-subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Category Filter {%- endcomment -%}
+    {%- if section.settings.show_filters -%}
+      <div class="experiences-filters" data-animate="fade-in-up" data-delay="1">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="tech-remedy">Tech-Remedies</button>
+        <button class="filter-btn" data-filter="contrast">Contrast Therapy</button>
+        <button class="filter-btn" data-filter="social">Social Experiences</button>
+        <button class="filter-btn" data-filter="alternative">Alternative Medicine</button>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Experiences Grid {%- endcomment -%}
+    <div class="experiences-grid">
+      {%- for block in section.blocks -%}
+        <article class="experience-card glow-overlay" 
+                 data-experience-id="{{ block.id }}"
+                 data-category="{{ block.settings.category }}"
+                 data-allows-group="{{ block.settings.allows_group_booking }}"
+                 data-animate="fade-in-up"
+                 data-delay="{{ forloop.index }}"
+                 {{ block.shopify_attributes }}>
+          
+          {%- comment -%} Image {%- endcomment -%}
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 800, height: 1000, crop: 'center' }}"
+                 alt="{{ block.settings.title | escape }}"
+                 class="experience-image"
+                 loading="lazy"
+                 width="400"
+                 height="500">
+          {%- else -%}
+            <div class="experience-image experience-placeholder bg-oak"></div>
+          {%- endif -%}
+
+          {%- comment -%} Content {%- endcomment -%}
+          <div class="experience-content">
+            <span class="experience-category">{{ block.settings.category_label | default: 'Experience' }}</span>
+            <h3 class="experience-title">{{ block.settings.title }}</h3>
+            
+            {%- if block.settings.credits != blank -%}
+              <span class="experience-credits">{{ block.settings.credits }} Credits</span>
+            {%- endif -%}
+
+            <p class="experience-description">{{ block.settings.description }}</p>
+
+            {%- comment -%} Social Booking Indicator {%- endcomment -%}
+            {%- if block.settings.allows_group_booking -%}
+              <div class="experience-social">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Book for {{ block.settings.max_group_size | default: 4 }}
+              </div>
+            {%- endif -%}
+
+            <a href="{{ block.settings.booking_url | default: '/pages/book' }}" 
+               class="btn btn--ghost experience-btn"
+               data-modal="booking-modal"
+               data-experience="{{ block.settings.title | handleize }}">
+              {{ block.settings.button_text | default: 'Reserve' }}
+            </a>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} View All Link {%- endcomment -%}
+    {%- if section.settings.view_all_url != blank -%}
+      <div class="experiences-footer text-center" data-animate="fade-in-up">
+        <a href="{{ section.settings.view_all_url }}" class="btn btn--secondary">
+          {{ section.settings.view_all_text | default: 'View All Experiences' }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .experiences-section {
+    padding: var(--space-xl) 0;
+    background: {{ section.settings.background_color }};
+  }
+
+  .experiences-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-lg);
+    opacity: 0;
+  }
+
+  .experiences-header.animated {
+    opacity: 1;
+  }
+
+  .section-eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-burnt-sienna);
+    margin-bottom: var(--space-sm);
+  }
+
+  .experiences-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    margin-bottom: var(--space-sm);
+  }
+
+  .experiences-subheading {
+    font-size: 1.125rem;
+    color: rgba(44, 24, 16, 0.7);
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  /* Filters */
+  .experiences-filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+    opacity: 0;
+  }
+
+  .experiences-filters.animated {
+    opacity: 1;
+  }
+
+  .filter-btn {
+    padding: 0.625rem 1.25rem;
+    background: transparent;
+    border: 1px solid rgba(44, 24, 16, 0.2);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all var(--transition-smooth);
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--color-burnt-sienna);
+    border-color: var(--color-burnt-sienna);
+    color: var(--color-sanctuary-white);
+  }
+
+  /* Grid */
+  .experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 1200px) {
+    .experiences-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Card */
+  .experience-card {
+    background: var(--color-sanctuary-white);
+    border-radius: var(--radius-organic-md);
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/5;
+    cursor: pointer;
+    opacity: 0;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+  }
+
+  .experience-card.animated {
+    opacity: 1;
+  }
+
+  .experience-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 30px 80px rgba(44, 24, 16, 0.15);
+  }
+
+  .experience-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+
+  .experience-card:hover .experience-image {
+    transform: scale(1.08);
+  }
+
+  .experience-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Gradient overlay */
+  .experience-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 30%,
+      rgba(44, 24, 16, 0.9) 100%
+    );
+    transition: background var(--transition-glow);
+    pointer-events: none;
+  }
+
+  .experience-card:hover::after {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 217, 168, 0.1) 0%,
+      rgba(44, 24, 16, 0.85) 100%
+    );
+  }
+
+  .experience-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-md);
+    z-index: 2;
+    color: var(--color-sanctuary-white);
+  }
+
+  .experience-category {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-warm-glow);
+    margin-bottom: 0.375rem;
+  }
+
+  .experience-title {
+    font-family: var(--font-heading);
+    font-size: 1.625rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-sanctuary-white);
+    margin-bottom: 0.25rem;
+  }
+
+  .experience-credits {
+    display: block;
+    font-size: 0.8125rem;
+    opacity: 0.7;
+  }
+
+  .experience-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    margin-top: 0;
+  }
+
+  .experience-card:hover .experience-description {
+    opacity: 0.9;
+    max-height: 80px;
+    margin-top: var(--space-sm);
+  }
+
+  /* Social booking indicator */
+  .experience-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: var(--space-sm);
+    padding: 0.375rem 0.75rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .experience-social svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .experience-btn {
+    margin-top: var(--space-sm);
+    padding: 0.625rem 1.5rem;
+    font-size: 0.75rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all var(--transition-smooth);
+  }
+
+  .experience-card:hover .experience-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Footer */
+  .experiences-footer {
+    margin-top: var(--space-lg);
+    opacity: 0;
+  }
+
+  .experiences-footer.animated {
+    opacity: 1;
+  }
+
+  /* Filter Animation */
+  .experience-card[data-filtered="false"] {
+    display: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.experience-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const filter = this.dataset.filter;
+
+        // Update active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        // Filter cards
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+            card.setAttribute('data-filtered', 'true');
+          } else {
+            card.style.display = 'none';
+            card.setAttribute('data-filtered', 'false');
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Experiences Grid",
+  "tag": "section",
+  "class": "experiences-section-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FDFBF8"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Tech-Remedies"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Experiences Reserved For You"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Privately reserved experiences designed to help you feel better than ever. Book for yourself or bring your people."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "Show Category Filters",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Button Text",
+      "default": "View All Experiences"
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "View All Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "experience",
+      "name": "Experience",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Hyperbaric Chamber"
+        },
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Category",
+          "options": [
+            { "value": "tech-remedy", "label": "Tech-Remedy" },
+            { "value": "contrast", "label": "Contrast Therapy" },
+            { "value": "social", "label": "Social Experience" },
+            { "value": "alternative", "label": "Alternative Medicine" }
+          ],
+          "default": "tech-remedy"
+        },
+        {
+          "type": "text",
+          "id": "category_label",
+          "label": "Category Label",
+          "default": "Tech-Remedy"
+        },
+        {
+          "type": "text",
+          "id": "credits",
+          "label": "Credit Cost",
+          "default": "4"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Push more oxygen into your body, enhancing the performance of every internal system."
+        },
+        {
+          "type": "checkbox",
+          "id": "allows_group_booking",
+          "label": "Allows Group/Pair Booking",
+          "default": true,
+          "info": "Enable social self-care bookings"
+        },
+        {
+          "type": "range",
+          "id": "max_group_size",
+          "label": "Max Group Size",
+          "min": 2,
+          "max": 8,
+          "step": 1,
+          "default": 4
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Reserve"
+        },
+        {
+          "type": "url",
+          "id": "booking_url",
+          "label": "Booking URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Experiences Grid",
+      "category": "Experiences",
+      "blocks": [
+        {
+          "type": "experience",
+          "settings": {
+            "title": "HBOT Chamber",
+            "category": "tech-remedy",
+            "category_label": "Tech-Remedy",
+            "credits": "4",
+            "description": "Push more oxygen into your body, enhancing performance and accelerating recovery.",
+            "allows_group_booking": true,
+            "max_group_size": 2
+          }
+        },
+        {
+          "type": "experience",
+          "settings": {
+            "title": "Contrast Suite",
+            "category": "contrast",
+            "category_label": "Contrast Therapy",
+            "credits": "3",
+            "description": "Our signature guided rotation of ice bath and sauna for full mental and physical benefits.",
+            "allows_group_booking": true,
+            "max_group_size": 4
+          }
+        },
+        {
+          "type": "experience",
+          "settings": {
+            "title": "Sauna Suite",
+            "category": "tech-remedy",
+            "category_label": "Tech-Remedy",
+            "credits": "2",
+            "description": "Relax in your private sauna suite to detox, soothe muscles, and accelerate metabolism. Traditional sauna and steam options available.",
+            "allows_group_booking": true,
+            "max_group_size": 2
+          }
+        },
+        {
+          "type": "experience",
+          "settings": {
+            "title": "Guided Ice Bath",
+            "category": "social",
+            "category_label": "Social Experience",
+            "credits": "3",
+            "description": "Begin with breathwork to prepare your mind and body. Join the coveted #6minuteclub.",
+            "allows_group_booking": true,
+            "max_group_size": 6
+          }
+        },
+        {
+          "type": "experience",
+          "settings": {
+            "title": "IV Vitamin Therapy",
+            "category": "alternative",
+            "category_label": "Alternative Medicine",
+            "credits": "4",
+            "description": "Bespoke IV drips tailored to your needs in our social IV suites.",
+            "allows_group_booking": true,
+            "max_group_size": 4
+          }
+        },
+        {
+          "type": "experience",
+          "settings": {
+            "title": "Red Light Therapy",
+            "category": "tech-remedy",
+            "category_label": "Tech-Remedy",
+            "credits": "1",
+            "description": "Enhance your body's physiology with powerful red light wavelengths. Unlock your inner glow.",
+            "allows_group_booking": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+
+
+

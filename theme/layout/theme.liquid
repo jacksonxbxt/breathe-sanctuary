@@ -1,0 +1,106 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0">
+  <meta name="theme-color" content="{{ settings.color_burnt_sienna_tadelakt }}">
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% render 'meta-tags' %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+
+  {% comment %} Breathe Wellness Sanctuary - Custom Fonts {% endcomment %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Darker+Grotesque:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  {{ content_for_header }}
+
+  {{ 'breathe-base.css' | asset_url | stylesheet_tag }}
+  {{ 'breathe-components.css' | asset_url | stylesheet_tag }}
+
+  <style>
+    :root {
+      /* Breathe Material Palette - From Master Plans */
+      --color-burnt-sienna: {{ settings.color_burnt_sienna_tadelakt }};
+      --color-oak-wood: {{ settings.color_oak_wood }};
+      --color-terracotta: {{ settings.color_terracotta }};
+      --color-warm-cream: {{ settings.color_warm_cream }};
+      --color-deep-earth: {{ settings.color_deep_earth }};
+      --color-sanctuary-white: {{ settings.color_sanctuary_white }};
+      
+      /* 2700K Warm Glow System */
+      --color-warm-glow: {{ settings.color_warm_glow }};
+      --glow-intensity: {{ settings.glow_intensity }}%;
+      
+      /* Typography */
+      --font-heading: 'Cormorant Garamond', serif;
+      --font-body: 'Darker Grotesque', sans-serif;
+      --font-scale: {{ settings.font_scale }}%;
+      
+      /* Organic Curves - Inspired by Pool Floor Plan A-08 */
+      --radius-organic-sm: 1.5rem;
+      --radius-organic-md: 2.5rem;
+      --radius-organic-lg: 4rem;
+      --radius-organic-xl: 6rem;
+      --radius-pill: 100vmax;
+      
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
+      
+      /* Transitions */
+      --transition-glow: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition-smooth: 0.3s ease;
+    }
+  </style>
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+  </script>
+</head>
+
+<body class="template-{{ template.name }} {% if template.suffix %}template-{{ template.name }}-{{ template.suffix }}{% endif %}">
+  <a class="skip-to-content" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+
+  {% section 'announcement-bar' %}
+  {% section 'header' %}
+
+  <main id="MainContent" class="main-content" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <script src="{{ 'breathe-main.js' | asset_url }}" defer="defer"></script>
+
+  {% comment %} Warm Glow Cursor Effect {% endcomment %}
+  <div class="warm-glow-cursor" aria-hidden="true"></div>
+</body>
+</html>
+
+
+
+
+
+
+
